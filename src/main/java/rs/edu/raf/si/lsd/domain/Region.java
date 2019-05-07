@@ -12,12 +12,12 @@ import java.util.List;
 
 @NodeEntity
 @Data @Builder @NoArgsConstructor @AllArgsConstructor
-@EqualsAndHashCode(exclude = "counties")
+@EqualsAndHashCode(exclude = "municipalityRelationships")
 public class Region implements TerritorialUnit {
 
     @Id
     private String name;
 
     @Relationship(type = "BELONGS_TO", direction = Relationship.INCOMING)
-    private List<Belongment> counties = new ArrayList<>();
+    private List<Belongment> countyRelationships = new ArrayList<>();
 }

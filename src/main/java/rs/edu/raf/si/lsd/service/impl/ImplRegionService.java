@@ -8,7 +8,10 @@ import rs.edu.raf.si.lsd.domain.dto.region.RegionRequestDTO;
 import rs.edu.raf.si.lsd.domain.dto.region.RegionResponseDTO;
 import rs.edu.raf.si.lsd.service.RegionService;
 
+import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
+import java.util.stream.StreamSupport;
 
 @Service
 public class ImplRegionService implements RegionService {
@@ -40,5 +43,25 @@ public class ImplRegionService implements RegionService {
                 .build();
 
         regionDao.delete(region);
+    }
+
+    @Override
+    public RegionResponseDTO findByName(RegionRequestDTO regionRequestDTO) {
+        Region region = regionDao.findByName(regionRequestDTO.getName());
+
+        RegionResponseDTO regionResponseDTO = new RegionResponseDTO(region);
+
+        return regionResponseDTO;
+    }
+
+    @Override
+    public List<RegionResponseDTO> findAll() {
+        Iterable<Region> regions = regionDao.findAll();
+
+        List<RegionResponseDTO> regionResponseDTOS = StreamSupport.stream(regions.spliterator(), false)
+                .map(RegionResponseDTO::new)
+                .collect(Collectors.toList());
+
+        return regionResponseDTOS;
     }
 }

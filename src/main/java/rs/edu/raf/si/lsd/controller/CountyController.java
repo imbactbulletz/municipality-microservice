@@ -7,6 +7,7 @@ import rs.edu.raf.si.lsd.domain.dto.county.CountyResponseDTO;
 import rs.edu.raf.si.lsd.service.CountyService;
 
 import javax.validation.Valid;
+import java.util.List;
 
 @RestController
 @RequestMapping(path = "/counties")
@@ -23,5 +24,15 @@ public class CountyController {
     @GetMapping (path = "/delete")
     public void delete(@Valid CountyRequestDTO countyRequestDTO) {
         countyService.delete(countyRequestDTO);
+    }
+
+    @GetMapping (path = "/findByName")
+    public CountyResponseDTO findByName(CountyRequestDTO countyRequestDTO) {
+        return countyService.findByName(countyRequestDTO);
+    }
+
+    @GetMapping (path = "/findAll")
+    public List<CountyResponseDTO> findAll() {
+        return countyService.findAll();
     }
 }

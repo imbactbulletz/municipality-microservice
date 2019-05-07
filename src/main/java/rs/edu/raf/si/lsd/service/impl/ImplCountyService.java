@@ -11,7 +11,10 @@ import rs.edu.raf.si.lsd.domain.dto.county.CountyRequestDTO;
 import rs.edu.raf.si.lsd.domain.dto.county.CountyResponseDTO;
 import rs.edu.raf.si.lsd.service.CountyService;
 
+import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
+import java.util.stream.StreamSupport;
 
 @Service
 public class ImplCountyService implements CountyService {
@@ -27,22 +30,35 @@ public class ImplCountyService implements CountyService {
         County county = County.builder()
                 .name(countyRequestDTO.getName()).build();
 
-        Optional<Region> regionOpt = regionDao.findById(countyRequestDTO.getRegionName());
+        Optional<Region> regionOptional = regionDao.findById(countyRequestDTO.getRegionName());
 
 
-        if(regionOpt.isPresent()) {
+        if(regionOptional.isPresent()) {
             countyDao.save(county);
 
-            Region region = regionOpt.get();
+            Region region = regionOptional.get();
 
-            Belongment belongment = new Belongment(county, region, countyRequestDTO.getFrom(), countyRequestDTO.getTo());
+            createRelation(county, region, countyRequestDTO.getFrom(), countyRequestDTO.getTo());
 
-            region.getCounties().add(belongment);
-            regionDao.save(region);
+            CountyResponseDTO countyResponseDTO = CountyResponseDTO.builder()
+                    .name(countyRequestDTO.getName())
+                    .regionName(region.getName())
+                    .from(countyRequestDTO.getFrom())
+                    .to(countyRequestDTO.getTo())
+                    .build();
 
+            return countyResponseDTO;
         }
 
         return null;
+    }
+
+    private void createRelation(County county, Region region, String from, String to) {
+        Belongment belongment = new Belongment(county, region, from, to);
+
+        region.getCountyRelationships().add(belongment);
+
+        regionDao.save(region);
     }
 
     @Override
@@ -52,6 +68,26 @@ public class ImplCountyService implements CountyService {
                 .build();
 
         countyDao.delete(county);
+    }
+
+    @Override
+    public CountyResponseDTO findByName(CountyRequestDTO countyRequestDTO) {
+        County county = countyDao.findByName(countyRequestDTO.getName());
+
+        CountyResponseDTO countyResponseDTO = new CountyResponseDTO(county);
+
+        return countyResponseDTO;
+    }
+
+    @Override
+    public List<CountyResponseDTO> findAll() {
+        Iterable<County> counties = countyDao.findAll();
+
+        List<CountyResponseDTO> countyResponseDTOS = StreamSupport.stream(counties.spliterator(), false)
+                .map(CountyResponseDTO::new)
+                .collect(Collectors.toList());
+
+        return countyResponseDTOS;
     }
 
 

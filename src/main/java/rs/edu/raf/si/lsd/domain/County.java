@@ -6,16 +6,27 @@ import org.neo4j.ogm.annotation.NodeEntity;
 import org.neo4j.ogm.annotation.Relationship;
 import org.neo4j.ogm.annotation.RelationshipEntity;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @NodeEntity
 @Data
 @Builder
 @AllArgsConstructor @NoArgsConstructor
-@EqualsAndHashCode(exclude = "region")
+@EqualsAndHashCode(exclude = {"regionRelationship", "municipalityRelationships"})
 public class County implements TerritorialUnit {
 
     @Id
     private String name;
 
     @Relationship(type = "BELONGS_TO")
-    private Belongment region;
+    private Belongment regionRelationship;
+
+    @Relationship(type = "BELONGS_TO", direction = "INCOMING")
+    private List<Belongment> municipalityRelationships = new ArrayList<>();
+
+    public County(String name, Belongment regionRelationship) {
+        this.name = name;
+        this.regionRelationship = regionRelationship;
+    }
 }

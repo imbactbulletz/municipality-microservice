@@ -6,4 +6,5 @@ import rs.edu.raf.si.lsd.domain.County;
 
 public interface CountyDao extends Neo4jRepository<County, String> {
 
+    County findByName(String name);
 }

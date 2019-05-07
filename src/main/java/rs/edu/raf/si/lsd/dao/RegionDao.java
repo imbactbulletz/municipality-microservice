@@ -7,4 +7,5 @@ import rs.edu.raf.si.lsd.domain.Region;
 
 public interface RegionDao extends Neo4jRepository <Region, String> {
 
+    Region findByName(String name);
 }
