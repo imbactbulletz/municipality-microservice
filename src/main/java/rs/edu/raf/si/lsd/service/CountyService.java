@@ -1,0 +1,9 @@
+package rs.edu.raf.si.lsd.service;
+
+import rs.edu.raf.si.lsd.domain.dto.county.CountyRequestDTO;
+import rs.edu.raf.si.lsd.domain.dto.county.CountyResponseDTO;
+
+public interface CountyService {
+
+    CountyResponseDTO save(CountyRequestDTO countyRequestDTO);
+}
