@@ -11,7 +11,6 @@ import rs.edu.raf.si.lsd.domain.dto.county.CountyRequestDTO;
 import rs.edu.raf.si.lsd.domain.dto.county.CountyResponseDTO;
 import rs.edu.raf.si.lsd.service.CountyService;
 
-import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -45,4 +44,15 @@ public class ImplCountyService implements CountyService {
 
         return null;
     }
+
+    @Override
+    public void delete(CountyRequestDTO countyRequestDTO) {
+        County county = County.builder()
+                .name(countyRequestDTO.getName())
+                .build();
+
+        countyDao.delete(county);
+    }
+
+
 }

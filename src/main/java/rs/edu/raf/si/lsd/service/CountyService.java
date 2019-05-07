@@ -6,4 +6,6 @@ import rs.edu.raf.si.lsd.domain.dto.county.CountyResponseDTO;
 public interface CountyService {
 
     CountyResponseDTO save(CountyRequestDTO countyRequestDTO);
+
+    void delete(CountyRequestDTO countyRequestDTO);
 }

@@ -1,10 +1,7 @@
 package rs.edu.raf.si.lsd.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import rs.edu.raf.si.lsd.domain.dto.county.CountyRequestDTO;
 import rs.edu.raf.si.lsd.domain.dto.county.CountyResponseDTO;
 import rs.edu.raf.si.lsd.service.CountyService;
@@ -21,5 +18,10 @@ public class CountyController {
     @PostMapping(path = "/save")
     public CountyResponseDTO save (@Valid @RequestBody CountyRequestDTO countyRequestDTO) {
         return countyService.save(countyRequestDTO);
+    }
+
+    @GetMapping (path = "/delete")
+    public void delete(@Valid CountyRequestDTO countyRequestDTO) {
+        countyService.delete(countyRequestDTO);
     }
 }
