@@ -56,7 +56,7 @@ public class ImplCountyService implements CountyService {
     private void createRelation(County county, Region region, String from, String to) {
         Belongment belongment = new Belongment(county, region, from, to);
 
-        region.getCountyRelationships().add(belongment);
+        region.getBelongmentRelationships().add(belongment);
 
         regionDao.save(region);
     }

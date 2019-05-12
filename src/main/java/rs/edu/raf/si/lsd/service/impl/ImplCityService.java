@@ -12,7 +12,6 @@ import rs.edu.raf.si.lsd.domain.entities.County;
 import rs.edu.raf.si.lsd.service.CityService;
 
 import java.util.List;
-import java.util.Optional;
 import java.util.stream.Collectors;
 import java.util.stream.StreamSupport;
 
@@ -55,7 +54,7 @@ public class ImplCityService implements CityService {
     private void createRelation(City city, County county, String from, String to) {
         Belongment belongment = new Belongment(city, county, from, to);
 
-        county.getCityAndMunicipalityRelationships().add(belongment);
+        county.getBelongmentRelationships().add(belongment);
 
         countyDao.save(county);
     }

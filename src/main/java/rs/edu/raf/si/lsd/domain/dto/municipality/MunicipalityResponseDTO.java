@@ -33,17 +33,17 @@ public class MunicipalityResponseDTO {
     public MunicipalityResponseDTO(Municipality municipality) {
         this.name = municipality.getName();
 
-        if(municipality.getBelongmentRelationship() != null) {
+        if(municipality.getOwnershipRelationship() != null) {
 
-            if(municipality.getBelongmentRelationship().getEnd() instanceof County) {
-                this.countyName = ((County) municipality.getBelongmentRelationship().getEnd()).getName();
+            if(municipality.getOwnershipRelationship().getEnd() instanceof County) {
+                this.countyName = ((County) municipality.getOwnershipRelationship().getEnd()).getName();
             } else {
-                this.cityName = ((City) municipality.getBelongmentRelationship().getEnd()).getName();
+                this.cityName = ((City) municipality.getOwnershipRelationship().getEnd()).getName();
             }
 
         }
-        this.from = municipality.getBelongmentRelationship().getFrom();
+        this.from = municipality.getOwnershipRelationship().getFrom();
 
-        this.to = municipality.getBelongmentRelationship().getTo();
+        this.to = municipality.getOwnershipRelationship().getTo();
     }
 }

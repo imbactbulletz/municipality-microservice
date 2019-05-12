@@ -10,11 +10,12 @@ import org.neo4j.ogm.annotation.Relationship;
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-@EqualsAndHashCode(exclude = "belongmentRelationship")
+@EqualsAndHashCode(exclude = "ownershipRelationship")
 public class Town implements TerritorialUnit {
     @Id
     private String name;
 
+    // Municipality / City relationships
     @Relationship(type = "BELONGS_TO")
     private Belongment belongmentRelationship;
 }

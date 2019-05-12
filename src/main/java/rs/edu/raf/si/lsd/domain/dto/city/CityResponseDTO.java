@@ -26,10 +26,10 @@ public class CityResponseDTO {
     public CityResponseDTO(City city) {
         this.name = city.getName();
 
-        this.countyName = ((County)city.getBelongmentRelationship().getEnd()).getName();
+        this.countyName = ((County)city.getOwnershipRelationship().getEnd()).getName();
 
-        this.from = city.getBelongmentRelationship().getFrom();
+        this.from = city.getOwnershipRelationship().getFrom();
 
-        this.to = city.getBelongmentRelationship().getTo();
+        this.to = city.getOwnershipRelationship().getTo();
     }
 }

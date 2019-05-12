@@ -98,11 +98,11 @@ public class ImplMunicipalityService implements MunicipalityService {
         Belongment belongment = new Belongment(childUnit, parentUnit, from, to);
 
         if(parentUnit instanceof County ) {
-            ((County)parentUnit).getCityAndMunicipalityRelationships().add(belongment);
+            ((County)parentUnit).getBelongmentRelationships().add(belongment);
         }
 
         if(parentUnit instanceof City) {
-            ((City)parentUnit).getTownsAndMunicipalities().add(belongment);
+            ((City)parentUnit).getBelongmentRelationships().add(belongment);
         }
 
         dao.save(parentUnit);

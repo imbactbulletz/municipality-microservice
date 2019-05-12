@@ -13,7 +13,7 @@ import java.util.List;
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-@EqualsAndHashCode(exclude = {"belongmentRelationship", "townsAndMunicipalities"})
+@EqualsAndHashCode(exclude = {"ownershipRelationship", "belongmentRelationships"})
 public class City implements TerritorialUnit {
 
     @Id
@@ -22,10 +22,11 @@ public class City implements TerritorialUnit {
     private String countyName;
 
     @Relationship(type = "BELONGS_TO")
-    private Belongment belongmentRelationship;
+    private Belongment ownershipRelationship;
 
 
+    // Municipality / Town relationships
     @Relationship(type = "BELONGS_TO", direction = "INCOMING")
-    private List<Belongment> townsAndMunicipalities = new ArrayList<>();
+    private List<Belongment> belongmentRelationships = new ArrayList<>();
 
 }

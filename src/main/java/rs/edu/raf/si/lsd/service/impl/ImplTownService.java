@@ -6,7 +6,6 @@ import rs.edu.raf.si.lsd.dao.BaseDao;
 import rs.edu.raf.si.lsd.dao.CityDao;
 import rs.edu.raf.si.lsd.dao.MunicipalityDao;
 import rs.edu.raf.si.lsd.dao.TownDao;
-import rs.edu.raf.si.lsd.domain.dto.municipality.MunicipalityResponseDTO;
 import rs.edu.raf.si.lsd.domain.dto.town.TownRequestDTO;
 import rs.edu.raf.si.lsd.domain.dto.town.TownResponseDTO;
 import rs.edu.raf.si.lsd.domain.entities.*;
@@ -101,11 +100,11 @@ public class ImplTownService implements TownService {
         Belongment belongment = new Belongment(childUnit, parentUnit, from, to);
 
         if(parentUnit instanceof City) {
-            ((City)parentUnit).getTownsAndMunicipalities().add(belongment);
+            ((City)parentUnit).getBelongmentRelationships().add(belongment);
         }
 
         if(parentUnit instanceof Municipality) {
-            ((Municipality)parentUnit).getTownAndVillageRelationships().add(belongment);
+            ((Municipality)parentUnit).getBelongmentRelationships().add(belongment);
         }
 
         dao.save(parentUnit);

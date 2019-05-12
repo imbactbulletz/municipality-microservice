@@ -2,7 +2,6 @@ package rs.edu.raf.si.lsd.domain.dto.region;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
 import lombok.*;
-import lombok.experimental.SuperBuilder;
 import rs.edu.raf.si.lsd.domain.entities.Belongment;
 import rs.edu.raf.si.lsd.domain.entities.County;
 import rs.edu.raf.si.lsd.domain.entities.Region;
@@ -25,7 +24,7 @@ public class RegionResponseDTO {
     public RegionResponseDTO(Region region) {
         this.name = region.getName();
 
-        setCounties(region.getCountyRelationships());
+        setCounties(region.getBelongmentRelationships());
     }
 
     public void setCounties(List<Belongment> countyRelationships) {

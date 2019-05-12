@@ -30,11 +30,11 @@ public class CountyResponseDTO {
 
     public CountyResponseDTO(County county) {
         this.name = county.getName();
-        this.regionName = ((Region)county.getBelongmentRelationship().getEnd()).getName();
-        this.from = county.getBelongmentRelationship().getFrom();
-        this.to = county.getBelongmentRelationship().getTo();
+        this.regionName = ((Region)county.getOwnershipRelationship().getEnd()).getName();
+        this.from = county.getOwnershipRelationship().getFrom();
+        this.to = county.getOwnershipRelationship().getTo();
 
-        setCitiesAndMunicipalities(county.getCityAndMunicipalityRelationships());
+        setCitiesAndMunicipalities(county.getBelongmentRelationships());
     }
 
 
