@@ -1,4 +1,4 @@
-package rs.edu.raf.si.lsd.domain.dto.municipality;
+package rs.edu.raf.si.lsd.domain.dto.town;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -11,14 +11,14 @@ import javax.validation.constraints.NotNull;
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-public class MunicipalityRequestDTO {
+public class TownRequestDTO {
 
     @NotNull
     private String name;
 
-    private String countyName;
-
     private String cityName;
+
+    private String municipalityName;
 
     private String from;
 

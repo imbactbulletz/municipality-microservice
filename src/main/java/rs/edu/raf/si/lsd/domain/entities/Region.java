@@ -1,6 +1,5 @@
-package rs.edu.raf.si.lsd.domain;
+package rs.edu.raf.si.lsd.domain.entities;
 
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.*;
 import org.neo4j.ogm.annotation.Id;
 import org.neo4j.ogm.annotation.NodeEntity;
@@ -12,7 +11,7 @@ import java.util.List;
 
 @NodeEntity
 @Data @Builder @NoArgsConstructor @AllArgsConstructor
-@EqualsAndHashCode(exclude = "municipalityRelationships")
+@EqualsAndHashCode(exclude = "countyRelationships")
 public class Region implements TerritorialUnit {
 
     @Id

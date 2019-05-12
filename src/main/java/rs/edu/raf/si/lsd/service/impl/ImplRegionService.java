@@ -3,7 +3,7 @@ package rs.edu.raf.si.lsd.service.impl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import rs.edu.raf.si.lsd.dao.RegionDao;
-import rs.edu.raf.si.lsd.domain.Region;
+import rs.edu.raf.si.lsd.domain.entities.Region;
 import rs.edu.raf.si.lsd.domain.dto.region.RegionRequestDTO;
 import rs.edu.raf.si.lsd.domain.dto.region.RegionResponseDTO;
 import rs.edu.raf.si.lsd.service.RegionService;

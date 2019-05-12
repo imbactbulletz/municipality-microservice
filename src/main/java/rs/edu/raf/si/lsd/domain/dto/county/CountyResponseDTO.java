@@ -1,13 +1,19 @@
 package rs.edu.raf.si.lsd.domain.dto.county;
 
+import com.fasterxml.jackson.annotation.JsonInclude;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import rs.edu.raf.si.lsd.domain.County;
-import rs.edu.raf.si.lsd.domain.Region;
+import rs.edu.raf.si.lsd.domain.dto.city.CityResponseDTO;
+import rs.edu.raf.si.lsd.domain.dto.municipality.MunicipalityResponseDTO;
+import rs.edu.raf.si.lsd.domain.entities.*;
+
+import java.util.ArrayList;
+import java.util.List;
 
 @Data @Builder @AllArgsConstructor @NoArgsConstructor
+@JsonInclude(JsonInclude.Include.NON_NULL)
 public class CountyResponseDTO {
 
     private String name;
@@ -18,10 +24,42 @@ public class CountyResponseDTO {
 
     private String to;
 
+    private List<MunicipalityResponseDTO> municipalities = new ArrayList<>();
+
+    private List<CityResponseDTO> cities = new ArrayList<>();
+
     public CountyResponseDTO(County county) {
         this.name = county.getName();
-        this.regionName = ((Region)county.getRegionRelationship().getEnd()).getName();
-        this.from = county.getRegionRelationship().getFrom();
-        this.to = county.getRegionRelationship().getTo();
+        this.regionName = ((Region)county.getBelongmentRelationship().getEnd()).getName();
+        this.from = county.getBelongmentRelationship().getFrom();
+        this.to = county.getBelongmentRelationship().getTo();
+
+        setCitiesAndMunicipalities(county.getCityAndMunicipalityRelationships());
     }
+
+
+    private void setCitiesAndMunicipalities(List<Belongment> municipalityRelationships) {
+        for(Belongment relationship : municipalityRelationships) {
+            if(relationship.getOrigin() instanceof Municipality) {
+                this.municipalities.add(
+                        MunicipalityResponseDTO.builder()
+                                .name(((Municipality) relationship.getOrigin()).getName())
+                                .countyName(this.name)
+                                .from(relationship.getFrom())
+                                .to(relationship.getTo())
+                                .build()
+                );
+            } else {
+                this.cities.add(
+                        CityResponseDTO.builder()
+                        .name(((City)relationship.getOrigin()).getName())
+                        .countyName(this.name)
+                        .from(relationship.getFrom())
+                        .to(relationship.getTo())
+                        .build()
+                );
+            }
+        }
+    }
+
 }

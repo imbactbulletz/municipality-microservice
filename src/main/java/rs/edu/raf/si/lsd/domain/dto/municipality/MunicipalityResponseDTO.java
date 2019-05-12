@@ -1,11 +1,13 @@
 package rs.edu.raf.si.lsd.domain.dto.municipality;
 
+import com.fasterxml.jackson.annotation.JsonInclude;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import rs.edu.raf.si.lsd.domain.County;
-import rs.edu.raf.si.lsd.domain.Municipality;
+import rs.edu.raf.si.lsd.domain.entities.City;
+import rs.edu.raf.si.lsd.domain.entities.County;
+import rs.edu.raf.si.lsd.domain.entities.Municipality;
 
 import javax.validation.constraints.NotNull;
 
@@ -13,13 +15,16 @@ import javax.validation.constraints.NotNull;
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
+@JsonInclude(JsonInclude.Include.NON_NULL)
 public class MunicipalityResponseDTO {
 
     @NotNull
     private String name;
 
-    @NotNull
+
     private String countyName;
+
+    private String cityName;
 
     private String from;
 
@@ -28,10 +33,17 @@ public class MunicipalityResponseDTO {
     public MunicipalityResponseDTO(Municipality municipality) {
         this.name = municipality.getName();
 
-        this.countyName = ((County)municipality.getCountyRelationship().getEnd()).getName();
+        if(municipality.getBelongmentRelationship() != null) {
 
-        this.from = municipality.getCountyRelationship().getFrom();
+            if(municipality.getBelongmentRelationship().getEnd() instanceof County) {
+                this.countyName = ((County) municipality.getBelongmentRelationship().getEnd()).getName();
+            } else {
+                this.cityName = ((City) municipality.getBelongmentRelationship().getEnd()).getName();
+            }
 
-        this.to = municipality.getCountyRelationship().getTo();
+        }
+        this.from = municipality.getBelongmentRelationship().getFrom();
+
+        this.to = municipality.getBelongmentRelationship().getTo();
     }
 }

@@ -5,13 +5,5 @@ import rs.edu.raf.si.lsd.domain.dto.municipality.MunicipalityResponseDTO;
 
 import java.util.List;
 
-public interface MunicipalityService {
-
-    MunicipalityResponseDTO save(MunicipalityRequestDTO municipalityRequestDTO);
-
-    void delete(MunicipalityRequestDTO municipalityRequestDTO);
-
-    MunicipalityResponseDTO findByName(MunicipalityRequestDTO municipalityRequestDTO);
-
-    List<MunicipalityResponseDTO> findAll();
+public interface MunicipalityService extends BaseService<MunicipalityRequestDTO, MunicipalityResponseDTO> {
 }

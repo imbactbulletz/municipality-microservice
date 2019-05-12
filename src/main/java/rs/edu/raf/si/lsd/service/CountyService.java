@@ -5,13 +5,6 @@ import rs.edu.raf.si.lsd.domain.dto.county.CountyResponseDTO;
 
 import java.util.List;
 
-public interface CountyService {
+public interface CountyService extends BaseService<CountyRequestDTO, CountyResponseDTO> {
 
-    CountyResponseDTO save(CountyRequestDTO countyRequestDTO);
-
-    void delete(CountyRequestDTO countyRequestDTO);
-
-    CountyResponseDTO findByName(CountyRequestDTO countyRequestDTO);
-
-    List<CountyResponseDTO> findAll();
 }
