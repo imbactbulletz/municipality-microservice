@@ -4,8 +4,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import rs.edu.raf.si.lsd.domain.dto.resident.ResidentRequestDTO;
 import rs.edu.raf.si.lsd.domain.dto.resident.ResidentResponseDTO;
-import rs.edu.raf.si.lsd.domain.dto.town.TownRequestDTO;
-import rs.edu.raf.si.lsd.domain.dto.town.TownResponseDTO;
 import rs.edu.raf.si.lsd.service.ResidentService;
 
 import javax.validation.Valid;
