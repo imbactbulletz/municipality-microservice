@@ -12,7 +12,7 @@ import java.util.List;
 @Data
 @Builder
 @AllArgsConstructor @NoArgsConstructor
-@EqualsAndHashCode(exclude = {"ownershipRelationship", "belongmentRelationships"})
+@EqualsAndHashCode(exclude = {" ownershipRelationship", "belongmentRelationships"})
 public class County implements TerritorialUnit {
 
     @Id

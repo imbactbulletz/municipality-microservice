@@ -27,15 +27,15 @@ public class TownResponseDTO {
     public TownResponseDTO(Town town) {
         this.name = town.getName();
 
-        if(town.getBelongmentRelationship() != null) {
-            if(town.getBelongmentRelationship().getEnd() instanceof City) {
-                this.cityName = ((City)town.getBelongmentRelationship().getEnd()).getName();
+        if(town.getOwnershipRelationship() != null) {
+            if(town.getOwnershipRelationship().getEnd() instanceof City) {
+                this.cityName = ((City)town.getOwnershipRelationship().getEnd()).getName();
             } else {
-                this.municipalityName = ((Municipality) town.getBelongmentRelationship().getEnd()).getName();
+                this.municipalityName = ((Municipality) town.getOwnershipRelationship().getEnd()).getName();
             }
 
-            this.from = town.getBelongmentRelationship().getFrom();
-            this.to = town.getBelongmentRelationship().getTo();
+            this.from = town.getOwnershipRelationship().getFrom();
+            this.to = town.getOwnershipRelationship().getTo();
         }
     }
 }

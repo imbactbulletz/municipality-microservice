@@ -13,6 +13,8 @@ import rs.edu.raf.si.lsd.service.TownService;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
+import java.util.stream.StreamSupport;
 
 @Service
 public class ImplTownService implements TownService {
@@ -134,6 +136,11 @@ public class ImplTownService implements TownService {
 
     @Override
     public List<TownResponseDTO> findAll() {
-        return null;
+        Iterable<Town> towns = townDao.findAll();
+
+        List<TownResponseDTO> townResponseDTOs = StreamSupport.stream(towns.spliterator(), false)
+                .map(TownResponseDTO::new).collect(Collectors.toList());
+
+        return townResponseDTOs;
     }
 }
