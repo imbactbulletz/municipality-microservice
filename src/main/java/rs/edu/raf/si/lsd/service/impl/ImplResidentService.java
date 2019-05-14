@@ -149,4 +149,59 @@ public class ImplResidentService implements ResidentService {
 
         return residentResponseDTOs;
     }
+
+    @Override
+    public List<ResidentResponseDTO> findAllInTown(String townName) {
+        Iterable<Resident> residents = residentDao.findAllInTown(townName);
+
+        List<ResidentResponseDTO> residentResponseDTOs = StreamSupport.stream(residents.spliterator(), false)
+                .map(ResidentResponseDTO::new)
+                .collect(Collectors.toList());
+
+        return residentResponseDTOs;
+    }
+
+    @Override
+    public List<ResidentResponseDTO> findAllInCity(String cityName) {
+        Iterable<Resident> residents = residentDao.findAllInCity(cityName);
+
+        List<ResidentResponseDTO> residentResponseDTOs = StreamSupport.stream(residents.spliterator(), false)
+                .map(ResidentResponseDTO::new)
+                .collect(Collectors.toList());
+
+        return residentResponseDTOs;
+    }
+
+    @Override
+    public List<ResidentResponseDTO> findAllInMunicipality(String municipalityName) {
+        Iterable<Resident> residents = residentDao.findAllInMunicipality(municipalityName);
+
+        List<ResidentResponseDTO> residentResponseDTOs = StreamSupport.stream(residents.spliterator(), false)
+                .map(ResidentResponseDTO::new)
+                .collect(Collectors.toList());
+
+        return residentResponseDTOs;
+    }
+
+    @Override
+    public List<ResidentResponseDTO> findAllInCounty(String countyName) {
+        Iterable<Resident> residents = residentDao.findAllInCounty(countyName);
+
+        List<ResidentResponseDTO> residentResponseDTOs = StreamSupport.stream(residents.spliterator(), false)
+                .map(ResidentResponseDTO::new)
+                .collect(Collectors.toList());
+
+        return residentResponseDTOs;
+    }
+
+    @Override
+    public List<ResidentResponseDTO> findAllInRegion(String regionName) {
+        Iterable<Resident> residents = residentDao.findAllInRegion(regionName);
+
+        List<ResidentResponseDTO> residentResponseDTOs = StreamSupport.stream(residents.spliterator(), false)
+                .map(ResidentResponseDTO::new)
+                .collect(Collectors.toList());
+
+        return residentResponseDTOs;
+    }
 }

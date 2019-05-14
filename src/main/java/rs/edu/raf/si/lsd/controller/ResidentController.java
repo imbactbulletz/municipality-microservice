@@ -35,4 +35,29 @@ public class ResidentController {
     public List<ResidentResponseDTO> findAll() {
         return residentService.findAll();
     }
+
+    @GetMapping (path = "/findAllInTown")
+    public List<ResidentResponseDTO> findAllInTown(String townName) {
+        return residentService.findAllInTown(townName);
+    }
+
+    @GetMapping (path = "/findAllInCity")
+    public List<ResidentResponseDTO> findAllInCity(String cityName) {
+        return residentService.findAllInCity(cityName);
+    }
+
+    @GetMapping (path = "/findAllInMunicipality")
+    public List<ResidentResponseDTO> findAllInMunicipality(String municipalityName) {
+        return residentService.findAllInMunicipality(municipalityName);
+    }
+
+    @GetMapping (path = "/findAllInCounty")
+    public List<ResidentResponseDTO> findAllInCounty(String countyName) {
+        return residentService.findAllInCounty(countyName);
+    }
+
+    @GetMapping (path = "/findAllInRegion")
+    public List<ResidentResponseDTO> findAllInRegion(String regionName) {
+        return residentService.findAllInRegion(regionName);
+    }
 }
