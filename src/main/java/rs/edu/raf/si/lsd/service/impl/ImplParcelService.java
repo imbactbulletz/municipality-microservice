@@ -141,4 +141,64 @@ public class ImplParcelService implements ParcelService {
 
         return parcelResponseDTOs;
     }
+
+    @Override
+    public List<ParcelResponseDTO> findAllInTown(String townName) {
+        Iterable<Parcel> parcels = parcelDao.findAllInTown(townName);
+
+        List<ParcelResponseDTO> parcelResponseDTOs = StreamSupport.stream(parcels.spliterator(), false)
+                .map(ParcelResponseDTO::new)
+                .collect(Collectors.toList());
+
+        return parcelResponseDTOs;
+
+    }
+
+    @Override
+    public List<ParcelResponseDTO> findAllInCity(String cityName) {
+        Iterable<Parcel> parcels = parcelDao.findAllInCity(cityName);
+
+        List<ParcelResponseDTO> parcelResponseDTOs = StreamSupport.stream(parcels.spliterator(), false)
+                .map(ParcelResponseDTO::new)
+                .collect(Collectors.toList());
+
+        return parcelResponseDTOs;
+
+    }
+
+    @Override
+    public List<ParcelResponseDTO> findAllInMunicipality(String municipalityName) {
+        Iterable<Parcel> parcels = parcelDao.findAllInMunicipality(municipalityName);
+
+        List<ParcelResponseDTO> parcelResponseDTOs = StreamSupport.stream(parcels.spliterator(), false)
+                .map(ParcelResponseDTO::new)
+                .collect(Collectors.toList());
+
+        return parcelResponseDTOs;
+
+    }
+
+    @Override
+    public List<ParcelResponseDTO> findAllInCounty(String countyName) {
+        Iterable<Parcel> parcels = parcelDao.findAllInCounty(countyName);
+
+        List<ParcelResponseDTO> parcelResponseDTOs = StreamSupport.stream(parcels.spliterator(), false)
+                .map(ParcelResponseDTO::new)
+                .collect(Collectors.toList());
+
+        return parcelResponseDTOs;
+
+    }
+
+    @Override
+    public List<ParcelResponseDTO> findAllInRegion(String regionName) {
+        Iterable<Parcel> parcels = parcelDao.findAllInRegion(regionName);
+
+        List<ParcelResponseDTO> parcelResponseDTOs = StreamSupport.stream(parcels.spliterator(), false)
+                .map(ParcelResponseDTO::new)
+                .collect(Collectors.toList());
+
+        return parcelResponseDTOs;
+
+    }
 }
