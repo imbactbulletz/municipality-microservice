@@ -5,6 +5,7 @@ import org.neo4j.ogm.annotation.Id;
 import org.neo4j.ogm.annotation.NodeEntity;
 import org.neo4j.ogm.annotation.Relationship;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @NodeEntity
@@ -24,5 +25,5 @@ public class Town implements TerritorialUnit {
 
     // Town residents
     @Relationship(type = "BELONGS_TO", direction = "INCOMING")
-    private List<Belongment> belongmentRelationships;
+    private List<Belongment> belongmentRelationships = new ArrayList<>();
 }
