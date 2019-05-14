@@ -94,12 +94,84 @@ public class ImplLicenseService implements LicenseService {
 
     @Override
     public LicenseResponseDTO findById(Long licenseId) {
-        Optional<License> license = licenseDao.findById(licenseId);
+        Optional<License> licenseOptional = licenseDao.findById(licenseId);
 
-        if (license != null) {
-            return (LicenseResponseDTO) license.stream().map(LicenseResponseDTO::new);
+        if (licenseOptional.isPresent()) {
+            return new LicenseResponseDTO(licenseOptional.get());
         }
 
         return null;
+    }
+
+    @Override
+    public List<LicenseResponseDTO> findByParcelNumber(String parcelNumber) {
+        Iterable<License> licenses = licenseDao.findByParcelNumber(parcelNumber);
+
+        List<LicenseResponseDTO> licenseResponseDTOs = StreamSupport
+                .stream(licenses.spliterator(), false)
+                .map(LicenseResponseDTO::new)
+                .collect(Collectors.toList());
+
+        return licenseResponseDTOs;
+    }
+
+    @Override
+    public List<LicenseResponseDTO> findByTown(String townName) {
+        Iterable<License> licenses = licenseDao.findByTown(townName);
+
+        List<LicenseResponseDTO> licenseResponseDTOs = StreamSupport
+                .stream(licenses.spliterator(), false)
+                .map(LicenseResponseDTO::new)
+                .collect(Collectors.toList());
+
+        return licenseResponseDTOs;
+    }
+
+    @Override
+    public List<LicenseResponseDTO> findByCity(String cityName) {
+        Iterable<License> licenses = licenseDao.findByCity(cityName);
+
+        List<LicenseResponseDTO> licenseResponseDTOs = StreamSupport
+                .stream(licenses.spliterator(), false)
+                .map(LicenseResponseDTO::new)
+                .collect(Collectors.toList());
+
+        return licenseResponseDTOs;
+    }
+
+    @Override
+    public List<LicenseResponseDTO> findByMunicipality(String municipalityName) {
+        Iterable<License> licenses = licenseDao.findByMunicipality(municipalityName);
+
+        List<LicenseResponseDTO> licenseResponseDTOs = StreamSupport
+                .stream(licenses.spliterator(), false)
+                .map(LicenseResponseDTO::new)
+                .collect(Collectors.toList());
+
+        return licenseResponseDTOs;
+    }
+
+    @Override
+    public List<LicenseResponseDTO> findByCounty(String countyName) {
+        Iterable<License> licenses = licenseDao.findByCounty(countyName);
+
+        List<LicenseResponseDTO> licenseResponseDTOs = StreamSupport
+                .stream(licenses.spliterator(), false)
+                .map(LicenseResponseDTO::new)
+                .collect(Collectors.toList());
+
+        return licenseResponseDTOs;
+    }
+
+    @Override
+    public List<LicenseResponseDTO> findByRegion(String regionName) {
+        Iterable<License> licenses = licenseDao.findByRegion(regionName);
+
+        List<LicenseResponseDTO> licenseResponseDTOs = StreamSupport
+                .stream(licenses.spliterator(), false)
+                .map(LicenseResponseDTO::new)
+                .collect(Collectors.toList());
+
+        return licenseResponseDTOs;
     }
 }

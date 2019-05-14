@@ -37,6 +37,43 @@ public class LicenseController {
         return licenseService.findByName(licenseRequestDTO);
     }
 
+    @GetMapping(path = "/findByParcelNumber")
+    public List<LicenseResponseDTO> findByParcelNumber(String parcelNumber) {
+        return licenseService.findByParcelNumber(parcelNumber);
+    }
+
+    @GetMapping(path = "/findById")
+    public LicenseResponseDTO findById(Long licenseId) {
+        return licenseService.findById(licenseId);
+    }
+
+    @GetMapping(path = "/findByTown")
+    public List<LicenseResponseDTO> findByTown(String townName) {
+        return licenseService.findByTown(townName);
+    }
+
+    @GetMapping(path = "/findByMunicipality")
+    public List<LicenseResponseDTO> findByMunicipality(String municipalityName) {
+        return licenseService.findByMunicipality(municipalityName);
+    }
+
+    @GetMapping(path = "/findByCity")
+    public List<LicenseResponseDTO> findByCity(String cityName) {
+        return licenseService.findByCity(cityName);
+    }
+
+
+    @GetMapping(path = "/findByCounty")
+    public List<LicenseResponseDTO> findByCounty(String countyName) {
+        return licenseService.findByCounty(countyName);
+    }
+
+
+    @GetMapping(path = "/findByRegion")
+    public List<LicenseResponseDTO> findByRegion(String regionName) {
+        return licenseService.findByRegion(regionName);
+    }
+
     @GetMapping(path = "/findAll")
     public List<LicenseResponseDTO> findAll() {
         return licenseService.findAll();

@@ -21,7 +21,7 @@ public class Parcel implements TerritorialUnit {
 
     private Long surface;
 
-    @Relationship(type = "BELONGS_TO", direction = "INCOMING")
+    @Relationship(type = "BELONGS_TO")
     private Belongment ownershipRelationship;
 
     @Relationship(type = "BELONGS_TO", direction = "INCOMING")
