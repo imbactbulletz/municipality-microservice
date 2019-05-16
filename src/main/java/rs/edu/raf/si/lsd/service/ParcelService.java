@@ -18,4 +18,6 @@ public interface ParcelService extends BaseService<ParcelRequestDTO, ParcelRespo
     List<ParcelResponseDTO> findAllInCounty(String countyName);
 
     List<ParcelResponseDTO> findAllInRegion(String regionName);
+
+    List<ParcelResponseDTO> findAllForOwner(String jmbg);
 }

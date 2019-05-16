@@ -25,4 +25,7 @@ public interface ParcelDao extends BaseDao<Parcel, String> {
 
     @Query("MATCH (p:Parcel) - [r*1..] - (reg:Region) WHERE reg.name = {0} RETURN p")
     List<Parcel> findAllInRegion(String regionName);
+
+    @Query("MATCH (parcel:Parcel) - [r] - (license: License {ownerId: {0}}) RETURN parcel, r, license")
+    List<Parcel> findAllForOwner(String jmbg);
 }

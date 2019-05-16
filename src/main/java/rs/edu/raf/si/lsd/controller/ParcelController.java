@@ -18,7 +18,7 @@ public class ParcelController {
     private ParcelService parcelService;
 
     @PostMapping(path = "/save")
-    public ParcelResponseDTO save (@Valid @RequestBody ParcelRequestDTO parcelRequestDTO) {
+    public ParcelResponseDTO save(@Valid @RequestBody ParcelRequestDTO parcelRequestDTO) {
         return parcelService.save(parcelRequestDTO);
     }
 
@@ -27,13 +27,19 @@ public class ParcelController {
         parcelService.delete(residentRequestDTO);
     }
 
-    @GetMapping (path = "/findByName")
+    @GetMapping(path = "/findByName")
     public ParcelResponseDTO findByName(ParcelRequestDTO residentRequestDTO) {
         return parcelService.findByName(residentRequestDTO);
     }
 
-    @GetMapping (path = "/findAll")
+    @GetMapping(path = "/findAll")
     public List<ParcelResponseDTO> findAll() {
         return parcelService.findAll();
+    }
+
+
+    @GetMapping(path = "/findAllForOwner")
+    public List<ParcelResponseDTO> findAllForOwner(String jmbg) {
+        return parcelService.findAllForOwner(jmbg);
     }
 }

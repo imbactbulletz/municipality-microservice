@@ -45,6 +45,7 @@ public class ImplParcelService implements ParcelService {
         Parcel parcel = Parcel.builder()
                 .parcelNumber(parcelRequestDTO.getParcelNumber())
                 .surface(parcelRequestDTO.getSurface())
+                .estimatedValue(parcelRequestDTO.getEstimatedValue())
                 .build();
 
         Optional<City> cityOptional = cityDao.findById("Šabac");
@@ -60,6 +61,7 @@ public class ImplParcelService implements ParcelService {
                     .builder()
                     .parcelNumber(parcel.getParcelNumber())
                     .surface(parcel.getSurface())
+                    .estimatedValue(parcel.getEstimatedValue())
                     .build();
 
             return parcelResponseDTO;
@@ -72,6 +74,7 @@ public class ImplParcelService implements ParcelService {
         Parcel parcel = Parcel.builder()
                 .parcelNumber(parcelRequestDTO.getParcelNumber())
                 .surface(parcelRequestDTO.getSurface())
+                .estimatedValue(parcelRequestDTO.getEstimatedValue())
                 .build();
 
         Optional<Town> townOptional = townDao.findById(parcelRequestDTO.getTerritorialUnitName());
@@ -113,7 +116,6 @@ public class ImplParcelService implements ParcelService {
     public void delete(ParcelRequestDTO requestDTO) {
         Parcel parcel = Parcel.builder()
                 .parcelNumber(requestDTO.getParcelNumber())
-                .surface(requestDTO.getSurface())
                 .build();
 
         parcelDao.delete(parcel);
@@ -123,10 +125,7 @@ public class ImplParcelService implements ParcelService {
     public ParcelResponseDTO findByName(ParcelRequestDTO requestDTO) {
         Parcel parcel = parcelDao.findByParcelNumber(requestDTO.getParcelNumber());
 
-        ParcelResponseDTO parcelResponseDTO = ParcelResponseDTO.builder()
-                .parcelNumber(parcel.getParcelNumber())
-                .surface(parcel.getSurface())
-                .build();
+        ParcelResponseDTO parcelResponseDTO = new ParcelResponseDTO(parcel);
 
         return parcelResponseDTO;
     }
@@ -200,5 +199,16 @@ public class ImplParcelService implements ParcelService {
 
         return parcelResponseDTOs;
 
+    }
+
+    @Override
+    public List<ParcelResponseDTO> findAllForOwner(String jmbg) {
+        List<Parcel> parcels = parcelDao.findAllForOwner(jmbg);
+
+        List<ParcelResponseDTO> parcelResponseDTOs = parcels.stream()
+                .map(ParcelResponseDTO::new)
+                .collect(Collectors.toList());
+
+        return parcelResponseDTOs;
     }
 }

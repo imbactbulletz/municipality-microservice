@@ -21,6 +21,8 @@ public class Parcel implements TerritorialUnit {
 
     private Long surface;
 
+    private Long estimatedValue;
+
     @Relationship(type = "BELONGS_TO")
     private Belongment ownershipRelationship;
 

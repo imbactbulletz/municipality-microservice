@@ -16,6 +16,8 @@ public class ParcelRequestDTO {
 
     private Long surface;
 
+    private Long estimatedValue;
+
     private String territorialUnitType;
 
     private String territorialUnitName;
